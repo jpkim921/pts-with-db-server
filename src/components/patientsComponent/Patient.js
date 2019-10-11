@@ -46,7 +46,7 @@ class Patient extends React.Component {
     console.log("patient", this.props.patient);
 
     if (this.state.redirect) {
-      return <Redirect exact to="/" />;
+      return <Redirect exact to="/patients" />;
     }
     return (
       <div className="container">

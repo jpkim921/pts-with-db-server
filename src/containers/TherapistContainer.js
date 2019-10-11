@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "../components/nav";
 import { connect } from "react-redux";
 import { fetchTherapist } from "../actions/therapistAction";
+import { Link } from "react-router-dom";
 
 import PatientsContainer from "./PatientsContainer";
 
@@ -10,11 +11,11 @@ class TherapistContainer extends React.Component {
     this.props.fetchTherapist();
   }
   render() {
-    console.log("therapistContainer", this.props.therapist.patients);
     return (
       <div className="TherapistContainer-container">
         <Navbar name={this.props.therapist.name} />
-        <PatientsContainer />
+        {/* <PatientsContainer /> */}
+        <Link to="/patients">Patients</Link>
       </div>
     );
   }

@@ -8,26 +8,26 @@ var _ = require("lodash");
 import Patients from "../components/patientsComponent/Patients";
 
 class PatientsContainer extends React.Component {
-  renderPatients = () => {
-    return this.props.patients.map(patient => {
-      return (
-        <div key={patient.id}>
-          <Link
-            to={{
-              pathname: `/patients/${patient.id}`,
-              state: { ...patient, redirect: false },
-              updatePatient: this.props.updatePatient
-            }}
-          >
-            {patient.name}
-          </Link>
-        </div>
-      );
-    });
-  };
+  // renderPatients = () => {
+  //   return this.props.patients.map(patient => {
+  //     return (
+  //       <div key={patient.id}>
+  //         <Link
+  //           to={{
+  //             pathname: `/patients/${patient.id}`,
+  //             state: { ...patient, redirect: false },
+  //             updatePatient: this.props.updatePatient
+  //           }}
+  //         >
+  //           {patient.name}
+  //         </Link>
+  //       </div>
+  //     );
+  //   });
+  // };
   render() {
     const patients = this.props.patients;
-    console.log("patientContainer", patients);
+    console.log("patientContainer-patients", patients);
     return (
       <div className="PatientsContainer-container">
         {patients.map(patient => {
@@ -43,7 +43,6 @@ class PatientsContainer extends React.Component {
               >
                 {patient.name}
               </Link>
-              {patient.name}
             </div>
           );
         })}
