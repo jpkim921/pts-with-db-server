@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 class Patient extends React.Component {
@@ -45,12 +46,13 @@ class Patient extends React.Component {
   render() {
     console.log("patient", this.props.patient);
 
-    if (this.state.redirect) {
-      return <Redirect exact to="/patients" />;
-    }
+    // if (this.state.redirect) {
+    //   return <Redirect exact to="/patients" />;
+    // }
     return (
       <div className="container">
         <h4>Patient Profile</h4>
+        <Link to="/patients">Back to Patient List</Link>
         <form action="" onSubmit={this.handleSubmit}>
           <div className="form-row">
             <div className="col">
