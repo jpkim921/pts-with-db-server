@@ -10,6 +10,7 @@ class TherapistContainer extends React.Component {
     this.props.fetchTherapist();
   }
   render() {
+    console.log("therapistContainer", this.props.therapist.patients);
     return (
       <div className="TherapistContainer-container">
         <Navbar name={this.props.therapist.name} />
