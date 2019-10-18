@@ -16,7 +16,7 @@ export default function therapistReducer(
     case "UPDATING_PATIENT":
       return Object.assign({}, state, { loading: true });
     case "UPDATE_PATIENT":
-      // console.log(action.payload);
+      console.log(action.payload);
       let updatedPatient = action.payload;
       let patients = state.patients;
       patients = findAndReplacePatient(patients, updatedPatient);

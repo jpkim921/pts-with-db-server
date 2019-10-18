@@ -5,23 +5,26 @@ class Patients extends React.Component {
   renderPatients = () => {
     return this.props.patients.map(patient => {
       return (
-        <div key={patient.id}>
-          <Link
-            to={{
-              pathname: `/patients/${patient.id}`,
-              state: { ...patient, redirect: false },
-              updatePatient: this.props.updatePatient
-            }}
-          >
+        <div key={patient.id} className="card">
+          <div className="card-body">
             {patient.name}
-          </Link>
+            <Link
+              to={{
+                pathname: `/patients/${patient.id}`,
+                state: { ...patient, redirect: false },
+                updatePatient: this.props.updatePatient,
+                deletePatient: this.props.deletePatient
+              }}
+            >
+              <button className="btn btn-primary">Edit Patient</button>
+            </Link>
+          </div>
         </div>
       );
     });
   };
 
   render() {
-    console.log("patients", this.props.patients);
     return (
       <div>
         <h4>Patient List</h4>

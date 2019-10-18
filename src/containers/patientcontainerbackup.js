@@ -1,7 +1,7 @@
 import React from "react";
 import Patients from "../components/patientsComponent/Patients";
 import { connect } from "react-redux";
-import { updatePatient, deletePatient } from "../actions/patientsAction";
+import { updatePatient } from "../actions/patientsAction";
 import { Link } from "react-router-dom";
 
 var _ = require("lodash");
@@ -11,11 +11,22 @@ class PatientsContainer extends React.Component {
     const { patients } = this.props;
     return (
       <div className="PatientsContainer-container">
-        <Patients
-          patients={patients}
-          updatePatient={this.props.updatePatient}
-          deletePatient={this.props.deletePatient}
-        />
+        <Patients patients={patients} />
+        {patients.map(patient => {
+          return (
+            <div key={patient.id}>
+              <Link
+                to={{
+                  pathname: `/patients/${patient.id}`,
+                  state: { ...patient, redirect: false },
+                  updatePatient: this.props.updatePatient
+                }}
+              >
+                {patient.name}
+              </Link>
+            </div>
+          );
+        })}
       </div>
     );
   }
@@ -28,8 +39,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  updatePatient,
-  deletePatient
+  updatePatient
 };
 export default connect(
   mapStateToProps,

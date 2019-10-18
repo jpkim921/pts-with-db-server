@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 
 class Patient extends React.Component {
   state = this.props.location.state;
@@ -18,8 +17,9 @@ class Patient extends React.Component {
     });
   };
 
+  toggleEditSubmitButton = () => {};
   editButton = event => {
-    event.preventDefault();
+    // event.preventDefault();
     let fieldsets, editButton, submitButton;
 
     //take out disabled attribute from fieldset elements
@@ -37,18 +37,13 @@ class Patient extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.location.updatePatient(this.state.id, this.state);
+    this.props.location.updatePatient(this.state);
     this.setState({
       redirect: true
     });
   };
 
   render() {
-    console.log("patient", this.props.patient);
-
-    // if (this.state.redirect) {
-    //   return <Redirect exact to="/patients" />;
-    // }
     return (
       <div className="container">
         <h4>Patient Profile</h4>
@@ -140,13 +135,6 @@ class Patient extends React.Component {
           <div className="form-row">
             <div className="col">
               <button
-                onClick={this.editButton}
-                id="patient-profile-edit"
-                className="btn btn-secondary form-control"
-              >
-                Edit
-              </button>
-              <button
                 id="patient-profile-submit"
                 type="submit"
                 className="btn btn-secondary form-control"
@@ -157,6 +145,13 @@ class Patient extends React.Component {
             </div>
           </div>
         </form>
+        <button
+          onClick={this.editButton}
+          id="patient-profile-edit"
+          className="btn btn-secondary form-control"
+        >
+          Edit
+        </button>
       </div>
     );
   }
