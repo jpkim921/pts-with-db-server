@@ -58,11 +58,23 @@ function updatePatientAction(patient) {
 export function deletePatient(patientId) {
   return dispatch => {
     dispatch({ type: "DELETING_PATIENT" });
-    return fetch(
-      `https://my-json-server.typicode.com/jpkim921/db/patients/${patientId}`,
-      {
-        method: "DELETE"
-      }
+    return (
+      fetch(
+        `https://my-json-server.typicode.com/jpkim921/db/patients/${patientId}`,
+        {
+          method: "DELETE"
+        }
+      )
+        .then(response => response.json())
+        // .then(patient => console.log(patient))
+        .then(patient => dispatch(deletePatientAction(patientId)))
     );
+  };
+}
+
+function deletePatientAction(patientId) {
+  return {
+    type: "DELETE_PATIENT",
+    payload: patientId
   };
 }

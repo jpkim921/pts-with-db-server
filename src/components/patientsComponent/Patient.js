@@ -18,7 +18,7 @@ class Patient extends React.Component {
   };
 
   toggleEditSubmitButton = () => {};
-  editButton = event => {
+  editButton = () => {
     // event.preventDefault();
     let fieldsets, editButton, submitButton;
 
@@ -43,10 +43,17 @@ class Patient extends React.Component {
     });
   };
 
+  handleDelete = () => {
+    this.props.location.deletePatient(this.state.id);
+  };
+
   render() {
     return (
       <div className="container">
-        <h4>Patient Profile</h4>
+        <div>
+          PATIENT PROFILE
+          <button onClick={this.handleDelete}>DELETE PATIENT</button>
+        </div>
         <Link to="/patients">Back to Patient List</Link>
         <form action="" onSubmit={this.handleSubmit}>
           <div className="form-row">

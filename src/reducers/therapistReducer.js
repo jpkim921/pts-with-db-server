@@ -16,7 +16,6 @@ export default function therapistReducer(
     case "UPDATING_PATIENT":
       return Object.assign({}, state, { loading: true });
     case "UPDATE_PATIENT":
-      console.log(action.payload);
       let updatedPatient = action.payload;
       let patients = state.patients;
       patients = findAndReplacePatient(patients, updatedPatient);
@@ -27,6 +26,17 @@ export default function therapistReducer(
         { loading: false },
         { patients: patients }
       );
+    case "DELETING_PATIENT":
+      return Object.assign({}, state, { loading: true });
+    case "DELETE_PATIENT":
+      console.log(action.payload);
+      let patientId = action.payload;
+      patients = state.therapist.patients.filter(
+        patient => patient.id !== patientId
+      );
+      let therapist = { ...state.therapist, ...{ patients: patients } };
+      return { ...state, ...therapist, patients, loading: false };
+
     default:
       return state;
   }
